@@ -1,0 +1,24 @@
+# PrestaShop Core (managed via Docker/Composer)
+/prestashop/
+/config/settings.inc.php
+/.env
+
+# Volatile directories
+/var/*
+!/var/.htaccess
+/upload/*
+/cache/*
+/logs/*
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Custom modules/themes build artifacts
+/themes/**/assets/css/compiled/
+/themes/**/assets/js/dist/
+/custom-modules/**/vendor/
+
+# IDE
+.idea/
+.vscode/
