@@ -3,31 +3,30 @@ version: '3.8'
 services:
   prestashop:
     image: prestashop/prestashop:8.1.3
-    platform: linux/amd64  # Forces the x86_64 architecture
+    platform: linux/amd64
     container_name: prestashop
     ports:
       - "8080:80"
     volumes:
       - ./prestashop:/var/www/html
-      - ./custom-modules:/var/www/html/modules/custom-modules  # Custom modules
-      - ./themes:/var/www/html/themes/custom-themes            # Custom themes
-      - ./overrides:/var/www/html/override                     # Overrides
+      - ./custom-modules:/var/www/html/modules/custom-modules
+      - ./themes:/var/www/html/themes/custom-themes
+      - ./overrides:/var/www/html/override
     environment:
-      - PS_DEV_MODE=1
-      - DB_SERVER=db
-      - DB_NAME=prestashop
-      - DB_USER=root
-      - DB_PASSWORD=root
+      - DB_SERVER=${DB_SERVER}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - db
 
   db:
     image: mysql:5.7
-    platform: linux/amd64  # Forces the x86_64 architecture
+    platform: linux/amd64
     container_name: prestashop-db
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=prestashop
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
     volumes:
       - prestashop-db-data:/var/lib/mysql
 
@@ -37,7 +36,7 @@ services:
     ports:
       - "8081:80"
     environment:
-      - PMA_HOST=db  # Connect to MySQL service
+      - PMA_HOST=db
     depends_on:
       - db
 
