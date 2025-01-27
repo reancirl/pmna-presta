@@ -4,7 +4,7 @@ services:
   prestashop:
     image: prestashop/prestashop:8.1.3
     platform: linux/amd64
-    container_name: prestashop-pmna
+    container_name: prestashop
     ports:
       - "8080:80"
     volumes:
@@ -23,7 +23,7 @@ services:
   db:
     image: mysql:5.7
     platform: linux/amd64
-    container_name: prestashop-db-pmna
+    container_name: prestashop-db
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
