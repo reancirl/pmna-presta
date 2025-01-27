@@ -27,6 +27,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_HOST=%  # <--- ALLOWS ROOT FROM ANY HOST/IP
     volumes:
       - prestashop-db-data:/var/lib/mysql
 
